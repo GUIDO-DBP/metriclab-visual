@@ -1,0 +1,9 @@
+.venv/
+frontend/node_modules/
+frontend/dist/
+runtime/
+dataset/
+__pycache__/
+*.pyc
+.env
+!*.example
