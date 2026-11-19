@@ -33,7 +33,7 @@ El motor C++ se compiló desde las fuentes del segundo directorio utilizando el 
 | Inferencia HTTP y galerías | Diez configuraciones reales; seis fotos train correctas por predicción. |
 | Frontend | npm ci y compilación TypeScript/Vite correctos. |
 | Motor C++ nuevo | 10.503 comprobaciones; cero fallos. |
-| Tests backend en entorno nuevo | 24 aprobados. |
+| Tests backend en entorno nuevo | 25 aprobados en la pasada final; incluye redirecciones sin filtrar credenciales. |
 | Playwright/Edge en puerto 8002 | 7 aprobados; navegación, carga, modelos, comparación, galerías, ampliación, matrices, explorador y móvil. |
 | Paquetes finales v2 sin logs | Instalación idempotente y cinco pruebas de descriptores repetidas correctamente. |
 | Entrenamiento realizado para instalar | Ninguno. |

@@ -8,14 +8,14 @@ Fecha: 19 de noviembre de 2026. Repositorio de destino: `GUIDO-DBP/metriclab-vis
 | --- | ---: | ---: | --- |
 | (raíz) | 12 | 0.386 | Código, metadatos pequeños o documentación seleccionada. |
 | backend | 6 | 0.041 | Código, metadatos pequeños o documentación seleccionada. |
-| docs | 11 | 0.050 | Código, metadatos pequeños o documentación seleccionada. |
+| docs | 11 | 0.053 | Código, metadatos pequeños o documentación seleccionada. |
 | documentacion_entrega | 57 | 9.765 | Código, metadatos pequeños o documentación seleccionada. |
 | experiments | 29 | 0.151 | Código, metadatos pequeños o documentación seleccionada. |
 | frontend | 21 | 0.218 | Código, metadatos pequeños o documentación seleccionada. |
 | metriclab | 23 | 0.125 | Código, metadatos pequeños o documentación seleccionada. |
 | resources | 6 | 3.002 | Código, metadatos pequeños o documentación seleccionada. |
-| scripts | 22 | 0.090 | Código, metadatos pequeños o documentación seleccionada. |
-| tests | 5 | 0.027 | Código, metadatos pequeños o documentación seleccionada. |
+| scripts | 22 | 0.091 | Código, metadatos pequeños o documentación seleccionada. |
+| tests | 5 | 0.028 | Código, metadatos pequeños o documentación seleccionada. |
 
 El inventario exacto puede variar al añadir este informe; `resources/distribution_audit.json` registra la última pasada. No se añaden archivos por debajo del límite de Git solo porque quepan. PDF, capturas definitivas y figuras educativas se conservan; las temporales de QA no.
 

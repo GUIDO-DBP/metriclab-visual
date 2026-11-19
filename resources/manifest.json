@@ -1,13 +1,13 @@
 {
   "version": "2026-11-19-v2",
-  "publication_status": "prepared locally; remote/release not yet published",
+  "publication_status": "published and release asset digests verified",
   "packages": [
     {
       "id": "models",
       "filename": "metriclab-models-2026-11-19-v2.zip",
       "bytes": 77552623,
       "sha256": "af02460acb86b34584b8f43dce5b17b2ae97723fcee31038ccfc899025c7ca3e",
-      "url": null,
+      "url": "https://github.com/GUIDO-DBP/metriclab-visual/releases/download/resources-v1/metriclab-models-2026-11-19-v2.zip",
       "file_count": 24,
       "uncompressed_bytes": 105507145
     },
@@ -16,7 +16,7 @@
       "filename": "metriclab-research-2026-11-19-v2.zip",
       "bytes": 90779931,
       "sha256": "ec299abf9a93ed9ba4b4f23b150be77bc0fea13b1f01aaaf9cbc67bd97f3a17a",
-      "url": null,
+      "url": "https://github.com/GUIDO-DBP/metriclab-visual/releases/download/resources-v1/metriclab-research-2026-11-19-v2.zip",
       "file_count": 172,
       "uncompressed_bytes": 125215106
     }
@@ -70,5 +70,6 @@
     "runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/verify_cpp_oracle.log",
     "runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/verify_frontend_and_image_api.log",
     "runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/verify_frontend_build.log"
-  ]
+  ],
+  "release_url": "https://github.com/GUIDO-DBP/metriclab-visual/releases/tag/resources-v1"
 }

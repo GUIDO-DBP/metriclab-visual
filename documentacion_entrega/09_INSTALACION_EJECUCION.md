@@ -46,7 +46,7 @@ No es necesario activar `.venv`: los scripts utilizan su intérprete explícito.
 
 El paquete obligatorio es `metriclab-models-2026-11-19-v2.zip`; research es opcional para auditar o repetir experimentos. El catálogo `resources/manifest.json` contiene SHA256 y tamaños exactos. La instalación valida el ZIP completo y sus archivos, rechaza rutas fuera de runtime y se detiene si encuentra un archivo existente diferente.
 
-Cuando la Release `resources-v1` esté publicada, la descarga automática usa su API y verifica el archivo contra el catálogo local:
+La Release `resources-v1` está publicada. La descarga automática usa su API y verifica el archivo contra el catálogo local:
 
 ```powershell
 .\scripts\download_resources.ps1 -Repository GUIDO-DBP/metriclab-visual -Weights

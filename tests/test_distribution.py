@@ -4,9 +4,19 @@ import tempfile
 import unittest
 import zipfile
 from pathlib import Path
-from scripts.resource_io import install_package,sha256
+from scripts.resource_io import install_package,sha256,SafeRedirect
 
 class Distribution(unittest.TestCase):
+    def test_cross_host_redirect_drops_auth_and_rejects_http(self):
+        from urllib.request import Request
+        request=Request('https://api.github.com/repos/example/repo/releases/assets/1',headers={'Authorization':'Bearer test-placeholder'})
+        handler=SafeRedirect()
+        redirected=handler.redirect_request(request,None,302,'Found',{},'https://release-assets.githubusercontent.com/blob')
+        self.assertIsNone(redirected.get_header('Authorization'))
+        same_host=handler.redirect_request(request,None,302,'Found',{},'https://api.github.com/other')
+        self.assertEqual(same_host.get_header('Authorization'),'Bearer test-placeholder')
+        with self.assertRaises(ValueError): handler.redirect_request(request,None,302,'Found',{},'http://example.com/blob')
+
     def package(self,root,files):
         archive=root/'models.zip'; inventory={'id':'models','files':{n:{'bytes':len(v),'sha256':hashlib.sha256(v).hexdigest()} for n,v in files.items()}}
         with zipfile.ZipFile(archive,'w') as z:

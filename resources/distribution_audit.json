@@ -1,6 +1,6 @@
 {
   "selected_files": 192,
-  "selected_bytes": 13853974,
+  "selected_bytes": 13858975,
   "groups": {
     "(ra\u00edz)": {
       "files": 12,
@@ -12,11 +12,11 @@
     },
     "docs": {
       "files": 11,
-      "bytes": 50061
+      "bytes": 53342
     },
     "documentacion_entrega": {
       "files": 57,
-      "bytes": 9764631
+      "bytes": 9764616
     },
     "experiments": {
       "files": 29,
@@ -26,21 +26,21 @@
       "files": 21,
       "bytes": 217754
     },
-    "resources": {
-      "files": 6,
-      "bytes": 3002078
-    },
-    "scripts": {
-      "files": 22,
-      "bytes": 90128
-    },
-    "tests": {
-      "files": 5,
-      "bytes": 26884
-    },
     "metriclab": {
       "files": 23,
       "bytes": 125191
+    },
+    "resources": {
+      "files": 6,
+      "bytes": 3002386
+    },
+    "scripts": {
+      "files": 22,
+      "bytes": 90752
+    },
+    "tests": {
+      "files": 5,
+      "bytes": 27687
     }
   },
   "findings": [],

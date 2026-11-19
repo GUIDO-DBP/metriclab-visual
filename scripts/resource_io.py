@@ -13,6 +13,16 @@ from pathlib import Path,PurePosixPath
 ROOT=Path(__file__).resolve().parents[1]
 CATALOG=ROOT/'resources/manifest.json'
 
+class SafeRedirect(urllib.request.HTTPRedirectHandler):
+    """Do not forward a private GitHub credential to a signed storage redirect."""
+    def redirect_request(self,req,fp,code,msg,headers,newurl):
+        from urllib.parse import urlsplit
+        if urlsplit(newurl).scheme!='https': raise ValueError('Redirección de descarga sin HTTPS rechazada.')
+        redirected=super().redirect_request(req,fp,code,msg,headers,newurl)
+        if redirected and urlsplit(req.full_url).hostname!=urlsplit(newurl).hostname:
+            redirected.remove_header('Authorization')
+        return redirected
+
 def sha256(path):
     h=hashlib.sha256()
     with Path(path).open('rb') as f:
@@ -41,7 +51,7 @@ def download(url,target,expected,algorithm='sha256',token=None):
     request=urllib.request.Request(url,headers=headers)
     temp=target.with_suffix(target.suffix+'.part')
     try:
-        with urllib.request.urlopen(request,timeout=90) as response,temp.open('wb') as f:
+        with urllib.request.build_opener(SafeRedirect()).open(request,timeout=90) as response,temp.open('wb') as f:
             shutil.copyfileobj(response,f)
         with temp.open('rb') as f: actual=hashlib.file_digest(f,algorithm).hexdigest()
         if actual!=expected: raise ValueError(f'La descarga de {target.name} no coincide con el hash esperado.')
