@@ -18,6 +18,8 @@ Los modelos se instalaron desde ZIP versionados mediante el mismo código que ut
 
 Se preparó un checkout de fuentes en el segundo directorio, con entornos nuevos. Se ejecutó `scripts/setup.ps1 -SkipResNet` para comprobar el backend y ejecutar **npm ci** y **npm run build** allí; el entorno ResNet CPU ya se había instalado explícitamente en ese directorio. No se reutilizó `node_modules` del proyecto original. Esto comprueba los pasos de dependencias, aunque no debe confundirse con que todas las descargas se hicieron en una única invocación sin intervención ante errores de red.
 
+Después de publicar se obtuvo allí el historial desde GitHub y se hizo checkout del commit `2a0bbe6`, sin modificar los entornos ni recursos ignorados. La verificación completa `verify_installation.ps1 -Smoke -RequireEngine` pasó sobre ese código publicado y el estado Git del checkout quedó limpio. Adicionalmente, un clon remoto separado descargó ambos ZIP y los pesos mediante el instalador; no se limitó la prueba a paquetes locales.
+
 Se ejecutó `scripts/verify_installation.ps1 -Smoke`: comprobó separación, imágenes, modelos y galerías. Se inició la aplicación mediante **scripts/start.ps1 -Port 8002**, con frontend compilado local y backend del entorno nuevo. El puerto 8000 original se mantuvo separado.
 
 El motor C++ se compiló desde las fuentes del segundo directorio utilizando el compilador MSYS2 existente en el equipo. No se copió la DLL original. Después se reinició la instancia de prueba para cargarla. El compilador es una dependencia del equipo, no un componente instalado por pip.

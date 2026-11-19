@@ -1,7 +1,11 @@
 {
-  "selected_files": 192,
-  "selected_bytes": 13858975,
+  "selected_files": 193,
+  "selected_bytes": 13860402,
   "groups": {
+    "resources": {
+      "files": 7,
+      "bytes": 3002965
+    },
     "(ra\u00edz)": {
       "files": 12,
       "bytes": 386027
@@ -12,7 +16,7 @@
     },
     "docs": {
       "files": 11,
-      "bytes": 53342
+      "bytes": 53789
     },
     "documentacion_entrega": {
       "files": 57,
@@ -30,13 +34,9 @@
       "files": 23,
       "bytes": 125191
     },
-    "resources": {
-      "files": 6,
-      "bytes": 3002386
-    },
     "scripts": {
       "files": 22,
-      "bytes": 90752
+      "bytes": 91153
     },
     "tests": {
       "files": 5,

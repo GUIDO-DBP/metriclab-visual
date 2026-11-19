@@ -29,6 +29,8 @@ def main():
     catalog=read_json(ROOT/'resources/manifest.json')
     for entry in catalog['packages']:
         archive=ROOT/'runtime/distribution'/catalog['version']/entry['filename']
+        if not archive.exists(): archive=ROOT/'runtime/downloads'/entry['filename']
+        if not archive.exists(): raise SystemExit('Para auditar los ZIP, descarga los paquetes models y research o ejecuta package_resources; esto no es necesario para iniciar la web.')
         with zipfile.ZipFile(archive) as z:
             for name in z.namelist():
                 if Path(name).suffix in {'.json','.md','.csv','.txt','.log'}: findings+=scan(z.read(name).decode('utf-8',errors='replace'),entry['filename']+'!'+name)
@@ -42,7 +44,8 @@ def main():
     findings+=history_findings
     summary={'selected_files':len(paths),'selected_bytes':sum(p.stat().st_size for p in paths),'groups':dict(groups),'findings':findings,'history_scanned':True,'package_text_scanned':True,'excluded_historical_logs':len(catalog['excluded_private_logs'])}
     (ROOT/'resources/distribution_audit.json').write_text(json.dumps(summary,indent=2),encoding='utf-8')
-    prior=read_json(ROOT/'runtime/github_preparation_backup/inventory.json')
+    local_inventory=ROOT/'runtime/github_preparation_backup/inventory.json'
+    prior=read_json(local_inventory if local_inventory.exists() else ROOT/'resources/workspace_inventory_before_distribution.json')
     lines=['# Auditoría de preparación GitHub','', 'Fecha: 19 de noviembre de 2026. Repositorio de destino: `GUIDO-DBP/metriclab-visual`; rama local `feature/clasificacion-u2`. Se conserva el commit anterior `621253d` y el historial, sin force push. Se hizo una copia ZIP del código antes de modificarlo, en `runtime/github_preparation_backup/`, fuera de la publicación.','',
     '## Contenido seleccionado para Git','', '| Grupo | Archivos | MB decimales | Decisión |','| --- | ---: | ---: | --- |']
     for group,values in sorted(groups.items()): lines.append(f"| {group} | {values['files']} | {values['bytes']/1e6:.3f} | Código, metadatos pequeños o documentación seleccionada. |")

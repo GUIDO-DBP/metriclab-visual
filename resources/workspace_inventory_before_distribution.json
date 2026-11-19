@@ -1,0 +1,30 @@
+{
+  "groups": {
+    "root": 394558,
+    ".git": 611412,
+    ".venv": 208604690,
+    "backend": 113034,
+    "dataset": 138607039,
+    "docs": 30924,
+    "experiments": 331702,
+    "frontend": 138462536,
+    "metriclab": 151456,
+    "runtime": 5951887248,
+    "scripts": 61766,
+    "tests": 77028
+  },
+  "counts": {
+    "root": 8,
+    ".git": 198,
+    ".venv": 1757,
+    "backend": 12,
+    "dataset": 9145,
+    "docs": 6,
+    "experiments": 49,
+    "frontend": 12299,
+    "metriclab": 25,
+    "runtime": 22511,
+    "scripts": 12,
+    "tests": 8
+  }
+}
