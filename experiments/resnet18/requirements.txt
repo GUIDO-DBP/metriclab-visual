@@ -1,0 +1,9 @@
+# Solo el experimento. Instalar torch/torchvision por separado desde el índice
+# oficial CUDA o CPU según README.md; no editar requirements de la aplicación.
+numpy==2.5.3
+Pillow==12.3.0
+scikit-learn==1.9.1
+scipy==1.18.1
+xgboost==3.4.1
+joblib==1.6.0
+matplotlib==3.11.2

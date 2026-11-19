@@ -2,6 +2,7 @@
 import json
 import os
 from backend.core import DATA, ROOT, load_vectors
+from backend.modeling import artifact_directory
 
 
 def main():
@@ -22,7 +23,7 @@ def main():
                 vectors = load_vectors(DATA / f'{split}.bin')
                 cursor.executemany('INSERT INTO images VALUES (%s,%s,%s,%s,%s,%s) ON CONFLICT (dataset_fingerprint,split,local_id) DO NOTHING',
                                    [(fingerprint, split, r['id'], r['category'], r['path'], vectors[i].tolist()) for i, r in enumerate(manifest[split])])
-            path = DATA / 'experiments.json'
+            path = artifact_directory(DATA) / 'experiments.json'
             if path.exists():
                 experiments = json.loads(path.read_text(encoding='utf-8'))
                 if experiments['fingerprint'] == fingerprint:

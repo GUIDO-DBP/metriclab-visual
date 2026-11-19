@@ -5,5 +5,18 @@ runtime/
 dataset/
 __pycache__/
 *.pyc
+*.tsbuildinfo
 .env
 !*.example
+# Distribution/build artifacts stay local; curated manuals and figures are tracked.
+.pytest_cache/
+.ruff_cache/
+*.log
+*.tmp
+*.part
+*.zip
+*.tar.gz
+documentacion_entrega/.build/
+documentacion_entrega/qa/
+frontend/test-results/
+frontend/playwright-report/

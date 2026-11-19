@@ -1,4 +1,2 @@
-# Opcionales: instalar y volver a ejecutar python -m scripts.prepare --train
-xgboost>=2.1,<4
-lightgbm>=4.5,<5
+# Solo PostgreSQL es opcional. Los cuatro clasificadores están en requirements.txt.
 psycopg[binary]>=3.2,<4

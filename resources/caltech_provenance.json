@@ -1,0 +1,60 @@
+{
+  "doi": "10.22002/d1.20086",
+  "url": "https://data.caltech.edu/records/20086",
+  "titles": [
+    {
+      "title": "Caltech 101"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Li, Fei-Fei",
+      "nameType": "Personal",
+      "givenName": "Fei-Fei",
+      "familyName": "Li",
+      "affiliation": [
+        "California Institute of Technology"
+      ],
+      "nameIdentifiers": []
+    },
+    {
+      "name": "Andreeto, Marco",
+      "nameType": "Personal",
+      "givenName": "Marco",
+      "familyName": "Andreeto",
+      "affiliation": [
+        "California Institute of Technology"
+      ],
+      "nameIdentifiers": []
+    },
+    {
+      "name": "Ranzato, Marc'Aurelio",
+      "nameType": "Personal",
+      "givenName": "Marc'Aurelio",
+      "familyName": "Ranzato",
+      "affiliation": [
+        "California Institute of Technology"
+      ],
+      "nameIdentifiers": []
+    },
+    {
+      "name": "Perona, Pietro",
+      "nameType": "Personal",
+      "givenName": "Pietro",
+      "familyName": "Perona",
+      "affiliation": [
+        "California Institute of Technology"
+      ],
+      "nameIdentifiers": []
+    }
+  ],
+  "rightsList": [
+    {
+      "rights": "Creative Commons Attribution 4.0 International",
+      "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
+      "schemeUri": "https://spdx.org/licenses/",
+      "rightsIdentifier": "cc-by-4.0",
+      "rightsIdentifierScheme": "SPDX"
+    }
+  ]
+}

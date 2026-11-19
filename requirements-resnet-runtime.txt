@@ -1,0 +1,4 @@
+# Minimal worker dependencies; classifiers remain in the backend environment.
+# Install torch==2.14.1 and torchvision==0.29.1 from the official CPU/CUDA index first.
+numpy==2.5.3
+Pillow==12.3.0

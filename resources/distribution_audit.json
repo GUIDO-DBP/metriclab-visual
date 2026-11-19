@@ -1,0 +1,50 @@
+{
+  "selected_files": 192,
+  "selected_bytes": 13853974,
+  "groups": {
+    "(ra\u00edz)": {
+      "files": 12,
+      "bytes": 386027
+    },
+    "backend": {
+      "files": 6,
+      "bytes": 40595
+    },
+    "docs": {
+      "files": 11,
+      "bytes": 50061
+    },
+    "documentacion_entrega": {
+      "files": 57,
+      "bytes": 9764631
+    },
+    "experiments": {
+      "files": 29,
+      "bytes": 150625
+    },
+    "frontend": {
+      "files": 21,
+      "bytes": 217754
+    },
+    "resources": {
+      "files": 6,
+      "bytes": 3002078
+    },
+    "scripts": {
+      "files": 22,
+      "bytes": 90128
+    },
+    "tests": {
+      "files": 5,
+      "bytes": 26884
+    },
+    "metriclab": {
+      "files": 23,
+      "bytes": 125191
+    }
+  },
+  "findings": [],
+  "history_scanned": true,
+  "package_text_scanned": true,
+  "excluded_historical_logs": 30
+}

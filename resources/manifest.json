@@ -1,0 +1,74 @@
+{
+  "version": "2026-11-19-v2",
+  "publication_status": "prepared locally; remote/release not yet published",
+  "packages": [
+    {
+      "id": "models",
+      "filename": "metriclab-models-2026-11-19-v2.zip",
+      "bytes": 77552623,
+      "sha256": "af02460acb86b34584b8f43dce5b17b2ae97723fcee31038ccfc899025c7ca3e",
+      "url": null,
+      "file_count": 24,
+      "uncompressed_bytes": 105507145
+    },
+    {
+      "id": "research",
+      "filename": "metriclab-research-2026-11-19-v2.zip",
+      "bytes": 90779931,
+      "sha256": "ec299abf9a93ed9ba4b4f23b150be77bc0fea13b1f01aaaf9cbc67bd97f3a17a",
+      "url": null,
+      "file_count": 172,
+      "uncompressed_bytes": 125215106
+    }
+  ],
+  "dataset": {
+    "record_url": "https://data.caltech.edu/records/mzrjq-6wc02",
+    "url": "https://data.caltech.edu/records/mzrjq-6wc02/files/caltech-101.zip?download=1",
+    "md5": "3138e1922a9193bfa496528edbbc45d0",
+    "license": "CC-BY-4.0",
+    "doi": "10.22002/D1.20086",
+    "sha256": "331234750fc7f77520e50d9565e8b6907b03565e30320da1401130db08c61f91"
+  },
+  "extractor_weights": {
+    "url": "https://download.pytorch.org/models/resnet18-f37072fd.pth",
+    "sha256": "f37072fd47e89c5e827621c5baffa7500819f7896bbacec160b1a16c560e07ec",
+    "path": "runtime/experiments/torch-cache/hub/checkpoints/resnet18-f37072fd.pth"
+  },
+  "split_fingerprint": "1dad6c2f85e8d806ba351218a934b5955e8bc7afc25b063f8f95751efaa2455f",
+  "dimensions": {
+    "hsv": 144,
+    "resnet18": 512
+  },
+  "excluded_private_logs": [
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/candidate_0_fold_0.log",
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/candidate_0_fold_1.log",
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/candidate_0_fold_2.log",
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/candidate_1_fold_0.log",
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/candidate_1_fold_1.log",
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/candidate_1_fold_2.log",
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/candidate_2_fold_0.log",
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/candidate_2_fold_1.log",
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/candidate_2_fold_2.log",
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/candidate_3_fold_0.log",
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/candidate_3_fold_1.log",
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/candidate_3_fold_2.log",
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/candidate_4_fold_0.log",
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/candidate_4_fold_1.log",
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/candidate_4_fold_2.log",
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/candidate_5_fold_0.log",
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/candidate_5_fold_1.log",
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/candidate_5_fold_2.log",
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/candidate_6_fold_0.log",
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/candidate_6_fold_1.log",
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/candidate_6_fold_2.log",
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/confirmation_original_curves.log",
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/confirmation_selected_curves.log",
+    "runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/diagnostic_curves.log",
+    "runtime/experiments/resnet18/20261118T195917Z-42d3213e/execution.log",
+    "runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/execution.log",
+    "runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/verify_backend_integration.log",
+    "runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/verify_cpp_oracle.log",
+    "runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/verify_frontend_and_image_api.log",
+    "runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/verify_frontend_build.log"
+  ]
+}

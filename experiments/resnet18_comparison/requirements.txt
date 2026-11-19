@@ -1,0 +1,3 @@
+# Independent experiment environment only; never install into the application.
+-r ../resnet18/requirements.txt
+lightgbm==4.7.0

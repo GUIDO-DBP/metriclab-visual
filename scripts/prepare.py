@@ -3,13 +3,10 @@ import argparse
 import hashlib
 import json
 import random
-import time
-from collections import Counter
 from pathlib import Path
 
-import joblib
 import numpy as np
-from backend.core import DATA, ROOT, DESCRIPTOR, Engine, extractor
+from backend.core import DATA, ROOT, DESCRIPTOR, extractor
 
 
 def main():
@@ -76,57 +73,9 @@ def main():
 
 
 def train(vectors, manifest):
-    # Reuse the project's constructors; optional imports remain optional.
-    import importlib.util
-    from sklearn.metrics import accuracy_score, balanced_accuracy_score, f1_score, confusion_matrix
-    from sklearn.preprocessing import LabelEncoder
-    spec = importlib.util.spec_from_file_location('original_classify', ROOT / 'metriclab/demo/classify.py')
-    mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
-    enc = LabelEncoder().fit([r['category'] for r in manifest['train']])
-    y = enc.transform([r['category'] for r in manifest['train']])
-    truth = enc.transform([r['category'] for r in manifest['query']])
-    classes = enc.classes_.tolist()
-    models, metrics, unavailable = {}, [], {}
-
-    def evaluate(key, name, predictions, seconds):
-        metrics.append({'key': key, 'model': name, 'accuracy': float(accuracy_score(truth, predictions)),
-                        'balanced_accuracy': float(balanced_accuracy_score(truth, predictions)),
-                        'f1_macro': float(f1_score(truth, predictions, average='macro')),
-                        'train_s': seconds,
-                        'confusion': confusion_matrix(truth, predictions, labels=range(len(classes))).tolist()})
-
-    for key, (name, constructor, reason) in zip(['gini', 'entropy', 'forest', 'xgboost', 'lightgbm'], mod.build_models()):
-        if constructor is None:
-            unavailable[key] = reason
-            continue
-        try:
-            print(f'Entrenando {name}…', flush=True)
-            model = constructor()
-            start = time.perf_counter()
-            model.fit(vectors['train'], y)
-            seconds = time.perf_counter()-start
-            pred = model.predict(vectors['query'])
-            evaluate(key, name, pred, seconds)
-            models[key] = model
-        except Exception as exc:
-            unavailable[key] = f'Error al entrenar: {exc}'
-    engine = Engine(vectors['train'])
-    preds = []
-    for value in vectors['query']:
-        neighbors = engine.search(value, min(5, len(y)), 1)['runs'][0]['neighbors']
-        labels = [int(y[n['id']]) for n in neighbors]
-        counts = Counter(labels)
-        preds.append(max(labels, key=lambda label: counts[label]))
-    engine.close()
-    evaluate('knn', 'k-NN / VP-Tree (k=5)', preds, 0.0)
-    bundle = {'fingerprint': manifest['fingerprint'], 'models': models, 'classes': classes, 'unavailable': unavailable}
-    joblib.dump(bundle, DATA / 'models.joblib', compress=3)
-    experiments = {'fingerprint': manifest['fingerprint'], 'dataset': manifest['dataset'], 'kind': manifest['kind'],
-                   'n_train': len(y), 'n_test': len(truth), 'classes': classes, 'metrics': metrics,
-                   'protocol': 'Separación estratificada 80/20, semilla 7. Sin ajuste de hiperparámetros. k-NN k=5. No es validación cruzada.'}
-    (DATA / 'experiments.json').write_text(json.dumps(experiments, ensure_ascii=False), encoding='utf-8')
-    print('Modelos y evaluación guardados.', flush=True)
+    # Single training pipeline, preserving the prepared split and prior artifacts.
+    from scripts.train_classifiers import train as train_classifiers
+    return train_classifiers(vectors, manifest)
 
 
 if __name__ == '__main__':

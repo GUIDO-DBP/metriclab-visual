@@ -58,7 +58,7 @@ class Integration(unittest.TestCase):
         self.assertEqual(tree[0]['id'], 0)
 
     def test_models_and_experiments(self):
-        available = [m['key'] for m in self.client.get('/api/status').json()['models'] if m['available']]
+        available = [key for key in ['gini','forest','xgboost','lightgbm'] if any(m['key'] == key and m['available'] for m in self.client.get('/api/status').json()['models'])]
         response = self.upload('/api/classify', compare='true')
         self.assertEqual(response.status_code, 200, response.text)
         preds = response.json()['predictions']
@@ -74,6 +74,10 @@ class Integration(unittest.TestCase):
         self.assertEqual(experiments['fingerprint'], self.manifest['fingerprint'])
         for m in experiments['metrics']:
             self.assertEqual(sum(map(sum, m['confusion'])), len(self.manifest['query']))
+        # k-NN remains available explicitly as a complementary classifier.
+        knn = self.upload('/api/classify', model='knn').json()['predictions'][0]
+        self.assertEqual(len(knn['neighbors']),5)
+        self.assertEqual(knn['family'],'secondary')
 
     def test_validation_and_paths(self):
         self.assertEqual(self.upload('/api/search', k=0).status_code, 422)
@@ -93,7 +97,7 @@ class Integration(unittest.TestCase):
             state['bundle'] = None
             self.assertEqual(self.upload('/api/classify', model='gini').status_code, 409)
             state['engine'] = None
-            self.assertFalse(self.client.get('/api/status').json()['ready'])
+            self.assertFalse(self.client.get('/api/status').json()['metric_ready'])
             self.assertEqual(self.upload('/api/search').status_code, 503)
         finally:
             state['bundle'] = bundle; state['engine'] = engine
