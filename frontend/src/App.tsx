@@ -6,7 +6,7 @@ import { ClassifierEvaluation } from './ClassifierEvaluation'
 import { ClassifierExplorer } from './ClassifierExplorer'
 import { MetricLaboratory } from './MetricLaboratory'
 import { HSV_ID, RESNET_ID } from './types'
-import type { Classification, Criterion, DatasetInfo, Experiments, ModelKey, Page, Status, DescriptorInfo, GalleryImage } from './types'
+import type { Classification, Criterion, DatasetInfo, Experiments, ModelKey, Page, Status, DescriptorInfo, GalleryImage, Sample } from './types'
 
 const navigation = [
   {id:'home',name:'Inicio',icon:Home},
@@ -35,6 +35,7 @@ export default function App() {
   const [connectionError,setConnectionError] = useState('')
   const [error,setError] = useState('')
   const [file,setFile] = useState<File | null>(null)
+  const [knownSample,setKnownSample] = useState<Sample|null>(null)
   const [preview,setPreview] = useState('')
   const [family,setFamily] = useState('decision_tree')
   const [criterion,setCriterion] = useState<Criterion>('gini')
@@ -65,10 +66,10 @@ export default function App() {
   useEffect(() => { api<{descriptors:DescriptorInfo[]}>('/api/descriptors').then(data => setDescriptorOptions(data.descriptors)).catch(() => {}) },[])
   useEffect(() => { if (!file) { setPreview(''); return }; const url = URL.createObjectURL(file); setPreview(url); return () => URL.revokeObjectURL(url) },[file])
   useEffect(() => { setError(''); window.scrollTo({top:0,behavior:'instant'}) },[page])
-  function chooseFile(selected?: File) {
+  function chooseFile(selected?: File, sample?: Sample) {
     if (!selected) return
     if (!['image/jpeg','image/png'].includes(selected.type) || selected.size > 10*1024*1024) { setError('Selecciona una imagen JPG o PNG de hasta 10 MB.'); return }
-    setFile(selected); setClassification(null); setError('')
+    setFile(selected); setKnownSample(sample && dataset?.samples.some(s=>s.id===sample.id && s.url===sample.url && s.category===sample.category) ? sample : null); setClassification(null); setError('')
   }
   async function classify(compareFour = false, overrideKey?: ModelKey) {
     if (!file) return
@@ -122,6 +123,9 @@ export default function App() {
         {classification && classification.predictions.length > 1 && <section className="panel same-image-comparison"><div className="section-heading"><div><span className="eyebrow">MISMA FOTOGRAFÍA · MISMO VECTOR</span><h2>Cuatro modelos, cuatro predicciones</h2></div><span className={classification.unanimous ? 'success-badge' : 'disagreement-badge'}>{classification.unanimous ? 'Coincidencia entre modelos' : 'Hay desacuerdo'}</span></div><p className="muted">{classification.unanimous ? 'Los cuatro modelos proponen la misma categoría. La coincidencia no garantiza que sea correcta.' : 'Los modelos proponen categorías diferentes. Sin conocer la etiqueta real de esta foto, no podemos afirmar cuál acertó.'}</p><div className="table-scroll"><table aria-label="Comparación de predicciones"><thead><tr><th>Modelo</th><th>Categoría predicha</th><th>Probabilidad estimada</th><th>Inferencia (ms)</th><th>Coincidencias</th></tr></thead><tbody>{classification.predictions.map(p => <tr key={p.key} className={prediction?.key === p.key ? 'focused-row' : ''}><td><button className="text-button" onClick={() => setPredictionKey(p.key)}>{p.name}</button></td><td><span className={!classification.unanimous ? 'category-disagreement' : ''}>{category(p.category)}</span></td><td>{format(p.probabilities[0]?.value*100 || 0,2)} %</td><td>{format(p.inference_ms,3)}</td><td>{classification.agreement[p.category]} de {classification.predictions.length}</td></tr>)}</tbody></table></div><p className="small muted">Probabilidades sin calibración: su valor no es directamente comparable como garantía de acierto. Selecciona una fila para inspeccionar ese resultado.</p></section>}
         {!!classification?.unavailable.length && <div className="notice warning">No se ejecutaron: {classification.unavailable.map(m => m.name).join(', ')}. Sus resultados no se han simulado.</div>}
         {prediction ? <section className="panel prediction"><div className="section-heading"><div><span className="eyebrow">PREDICCIÓN CALCULADA · {prediction.name}</span><h2>{category(prediction.category)}</h2></div><span className="inference-badge"><Timer size={15}/>{format(prediction.inference_ms,3)} ms de inferencia</span></div><p className="muted">El modelo considera que esta es la categoría más probable entre las {status?.categories.length} clases conocidas. {isResnet ? 'Utiliza patrones visuales de ResNet-18' : 'Utiliza color y orientación de bordes'}; puede equivocarse ante fotografías distintas al dataset.</p><div className="prediction-tabs">{classification!.predictions.length > 1 && classification!.predictions.map(p => <button key={p.key} className={prediction.key === p.key ? 'selected' : ''} onClick={() => setPredictionKey(p.key)}>{p.name}</button>)}</div>
+          <div className={`ground-truth ${knownSample ? (knownSample.category===prediction.category ? 'correct' : 'incorrect') : ''}`} data-testid="ground-truth">
+            {knownSample ? <><strong>Muestra identificada del conjunto de prueba · #{knownSample.id}</strong><p>Categoría verdadera: <b>{category(knownSample.category)}</b> · Predicción: <b>{category(prediction.category)}</b>.</p><p>{knownSample.category===prediction.category ? 'El modelo acertó en esta muestra.' : 'El modelo no acertó en esta muestra.'} Este caso individual no reemplaza las métricas del conjunto completo.</p></> : <><strong>Categoría verdadera desconocida</strong><p>Imagen cargada por el usuario. No inferimos su etiqueta a partir del nombre del archivo ni de la predicción.</p></>}
+          </div>
           <h3>Categorías más probables</h3><p className="small muted">{prediction.probability_label}. No es una garantía de acierto.</p>
           {prediction.probabilities.slice(0,5).map(p => <div className="probability" key={p.category}><span>{category(p.category)}</span><div><i style={{width:`${p.value*100}%`}}/></div><b>{format(p.value*100,2)} %</b></div>)}
           <details><summary>Ver probabilidades de las {prediction.probabilities.length} categorías</summary><div className="probability-list">{prediction.probabilities.map(p => <div key={p.category}><span>{category(p.category)}</span><strong>{format(p.value*100,4)} %</strong></div>)}</div></details>
@@ -132,8 +136,8 @@ export default function App() {
         {classification && <><div className="panel timing-summary"><span>Extracción: {format(classification.extraction.extraction_ms,2)} ms · {classification.extraction.device}{classification.extraction.cache_hit ? ' · vector en caché' : ''}</span><span>Total de solicitud: {format(classification.total_ms,2)} ms</span></div><Descriptor values={classification.descriptor}/></>}
         <section className="panel availability-panel"><h3>Estado de los cuatro algoritmos</h3><div className="model-list">{families.map(f => { const model = status?.models.find(m => m.key === f.key); return <div key={f.key}><span className={`model-dot ${model?.available ? 'available' : ''}`}/><div><strong>{f.name}</strong><p>{model?.available ? 'Entrenado y disponible' : model?.reason || 'Sin conexión'}</p></div></div> })}</div><p className="small muted">Gini y entropía son criterios del mismo Decision Tree. El k-NN se conserva en el laboratorio complementario.</p></section>
       </>}
-      {page === 'evaluation' && <><div className="tab-row"><button className={evaluationScope==='historical_test' ? 'selected' : ''} onClick={() => setEvaluationScope('historical_test')}>Prueba histórica reutilizada</button><button className={evaluationScope==='training_cv' ? 'selected' : ''} onClick={() => setEvaluationScope('training_cv')}>Validación interna — entrenamiento</button></div><EvaluationView descriptorId={descriptorId} scope={evaluationScope} fallback={experiments} focusKey={focusKey}/></>}
-      {page === 'explorer' && <ClassifierExplorer descriptorId={descriptorId} initialKey={explorerKey} {...{file,preview,status}} onClassify={() => setPage('classify')}/>}
+      {page === 'evaluation' && <><div className="tab-row"><button className={evaluationScope==='historical_test' ? 'selected' : ''} onClick={() => setEvaluationScope('historical_test')}>Prueba histórica reutilizada</button><button className={evaluationScope==='training_cv' ? 'selected' : ''} onClick={() => setEvaluationScope('training_cv')}>Validación interna — entrenamiento</button></div><EvaluationView key={descriptorId+':'+evaluationScope} descriptorId={descriptorId} scope={evaluationScope} fallback={experiments} focusKey={focusKey}/></>}
+      {page === 'explorer' && <ClassifierExplorer key={descriptorId} descriptorId={descriptorId} initialKey={explorerKey} {...{file,preview,status}} onClassify={() => setPage('classify')}/>}
       {page === 'dataset' && <DatasetMethodology descriptorId={descriptorId} dataset={dataset} experiments={experiments}/>}
       {page === 'metric' && <MetricLaboratory {...{file,preview,status}} samples={dataset?.samples || []} onChoose={chooseFile} onError={setError}/>}
       <footer><span><Atom size={15}/>MetricLab Visual</span><span>Clasificación de imágenes · Cuatro algoritmos · Resultados reales.</span></footer>
@@ -168,11 +172,11 @@ function DatasetMethodology({dataset,experiments,descriptorId}: {dataset: Datase
 }
 
 function EvaluationView({descriptorId,scope,fallback,focusKey}:{descriptorId:string;scope:string;fallback:Experiments|null;focusKey:ModelKey}) {
-  const [data,setData]=useState<Experiments|null>(fallback)
+  const [data,setData]=useState<Experiments|null>(()=>fallback?.descriptor_id===descriptorId && fallback.evaluation_scope===scope ? fallback : null)
   const [error,setError]=useState('')
   useEffect(() => { let active=true; setData(null); setError(''); api<Experiments>(`/api/experiments?descriptor_id=${descriptorId}&evaluation=${scope}`).then(r => {if(active) setData(r)}).catch(e => {if(active) setError(e.message)}); return () => {active=false} },[descriptorId,scope])
   if(error) return <div className="notice warning">{error}</div>
   if(!data) return <div className="loading-line"><LoaderCircle className="spin" size={18}/>Cargando evaluación…</div>
-  if(scope==='historical_test') return <><div className="notice warning"><Info size={18}/>Prueba histórica reutilizada. Estos resultados no son una evaluación independiente nueva.</div><ClassifierEvaluation experiments={data} focusKey={focusKey}/></>
+  if(scope==='historical_test') return <ClassifierEvaluation experiments={data} focusKey={focusKey}/>
   return <section className="panel"><h2>Validación interna, solo entrenamiento</h2><p className="muted">{data.protocol || data.message}</p>{data.cv_metrics && <div className="table-scroll"><table><thead><tr><th>Configuración original</th><th>Accuracy media ± DE</th><th>Balanced acc. media ± DE</th><th>F1 macro media ± DE</th></tr></thead><tbody>{data.cv_metrics.map(r => <tr key={r.key}><td>{names[r.key]}{r.key==='lightgbm' ? ' · antes del ajuste' : ''}</td><td>{format(r.mean.accuracy*100)} ± {format(r.std.accuracy*100)} %</td><td>{format(r.mean.balanced_accuracy*100)} ± {format(r.std.balanced_accuracy*100)} %</td><td>{format(r.mean.f1_macro,4)} ± {format(r.std.f1_macro,4)}</td></tr>)}</tbody></table></div>}{data.internal_confirmation && <><h3>LightGBM: confirmación interna reservada tras la búsqueda</h3><p className="small muted">Partición exclusivamente de entrenamiento, no usada para seleccionar parámetros. No es el mismo alcance que la CV de cinco folds anterior.</p><div className="table-scroll"><table><thead><tr><th>Configuración</th><th>Accuracy</th><th>Balanced accuracy</th><th>F1 macro</th></tr></thead><tbody>{Object.entries(data.internal_confirmation).map(([key,r]) => <tr key={key}><td>{key==='original' ? 'Original' : 'Regularizada seleccionada'}</td><td>{format(r.accuracy*100)} %</td><td>{format(r.balanced_accuracy*100)} %</td><td>{format(r.f1_macro,4)}</td></tr>)}</tbody></table></div></>}<p className="small muted">DE describe dispersión entre folds; no es un intervalo de confianza. El descriptor ya fue explorado antes con la prueba histórica.</p></section>
 }

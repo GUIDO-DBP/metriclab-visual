@@ -52,6 +52,7 @@ export type Metric = {
   inference_samples?: number; reused: boolean; confusion: number[][];
 }
 export type Experiments = {
+  dataset?: string;
   metrics: Metric[]; secondary_metrics?: Metric[]; classes?: string[]; protocol?: string; timing_protocol?: string;
   message?: string; n_test?: number; n_train?: number; n_classes?: number; fingerprint?: string; run_id?: string;
   versions?: Record<string, string>;

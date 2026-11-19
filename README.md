@@ -8,6 +8,8 @@ Dos descriptores: **HSV + Sobel (144D)** y **ResNet-18 congelada (512D)**. Cada 
 
 [Repositorio](https://github.com/GUIDO-DBP/metriclab-visual) · [Manuales Markdown/PDF](documentacion_entrega/README.md) · [Informe académico PDF](documentacion_entrega/INFORME_GENERAL_METRICLAB_VISUAL.pdf)
 
+[Mejoras de interfaz e interpretación](docs/MEJORAS_INTERFAZ_RESULTADOS.md): contexto metodológico visible, resúmenes de matrices reales, explicación de árboles y etiqueta verdadera de muestras identificadas, sin modificar modelos ni resultados.
+
 ## Instalación rápida Windows
 
 Instala Python **3.14 x64**, Node.js **22.12+** y Git. CPU es predeterminada; GPU NVIDIA, opcional.
