@@ -19,3 +19,5 @@ git worktree add ..\metriclab-materiales origin/archive/materiales-estudio-2026-
 ```
 
 Los generadores históricos se ejecutan desde ese checkout con sus requisitos originales; necesitan sus recursos runtime, no asumen los de otro directorio. Guías vigentes: [instalación](INSTALACION_WINDOWS.md), [arquitectura](ARQUITECTURA.md) y [metodología](METODOLOGIA_RESULTADOS.md). No se generó un nuevo informe APA.
+
+La descripción histórica de la Release menciona la antigua ruta de instalación en `documentacion_entrega/`. No se modifica esa Release: para instalar se utiliza el README actual; la guía antigua sigue accesible en el respaldo enlazado arriba.
