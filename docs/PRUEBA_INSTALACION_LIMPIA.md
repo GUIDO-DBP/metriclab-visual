@@ -4,7 +4,7 @@ Fecha: 19 de noviembre de 2026. La prueba usa un segundo directorio del mismo eq
 
 ## Aislamiento y recursos
 
-Se creó un entorno backend nuevo con Python 3.14.4 x64, `include-system-site-packages = false`. Pip instaló las versiones fijadas; `pip check` informó que no había requisitos rotos. No se copió `.venv` original. Se generó `requirements-lock.txt` a partir de esta instalación, incluyendo dependencias transitivas.
+Se creó un entorno backend nuevo con Python 3.14.4 x64, `include-system-site-packages = false`. Pip instaló las versiones fijadas; `pip check` informó que no había requisitos rotos. No se copió `.venv` original. Se generó `requirements/runtime.lock.txt` a partir de esta instalación, incluyendo dependencias transitivas.
 
 Se creó también un entorno ResNet nuevo, sin paquetes globales, con **torch 2.14.1+cpu**, **torchvision 0.29.1+cpu**, NumPy 2.5.3 y Pillow 12.3.0. No se utilizó el entorno CUDA original ni la GPU para este ensayo. El endpoint del servidor nuevo confirmó `device: cpu` después de clasificar.
 

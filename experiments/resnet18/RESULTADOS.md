@@ -1,5 +1,7 @@
 # Resultados verificados del experimento ResNet-18
 
+> Los artefactos `runtime/` indicados abajo son rutas locales, no archivos del árbol GitHub. Se obtienen con el paquete `research` de la [Release resources-v1](https://github.com/GUIDO-DBP/metriclab-visual/releases/tag/resources-v1); véase la [instalación](../../docs/INSTALACION_WINDOWS.md). Las cifras y protocolos originales se conservan.
+
 Ejecucion: `20261118T195917Z-42d3213e`. Resultado independiente; la aplicacion y el frontend siguen con HSV + Sobel.
 
 # Experimento independiente: ResNet-18 frente a HSV + Sobel
@@ -56,12 +58,12 @@ Fuentes oficiales: [ResNet-18 y transforms](https://docs.pytorch.org/vision/stab
 ## Reproducir y consultar artefactos
 
 - [Gu?a y comandos del experimento](README.md).
-- [Resultados completos JSON](../../runtime/experiments/resnet18/20261118T195917Z-42d3213e/results.json).
-- [Comparaci?n CSV](../../runtime/experiments/resnet18/20261118T195917Z-42d3213e/comparison.csv).
-- [Reporte de integridad](../../runtime/experiments/resnet18/20261118T195917Z-42d3213e/completion.json).
-- [Auditor?a de reproducibilidad hist?rica](../../runtime/experiments/resnet18/20261118T195917Z-42d3213e/historical_reproducibility_audit.json).
+- Resultados completos JSON: `runtime/experiments/resnet18/20261118T195917Z-42d3213e/results.json`.
+- Comparaci?n CSV: `runtime/experiments/resnet18/20261118T195917Z-42d3213e/comparison.csv`.
+- Reporte de integridad: `runtime/experiments/resnet18/20261118T195917Z-42d3213e/completion.json`.
+- Auditor?a de reproducibilidad hist?rica: `runtime/experiments/resnet18/20261118T195917Z-42d3213e/historical_reproducibility_audit.json`.
 
-![Comparaci?n calculada](../../runtime/experiments/resnet18/20261118T195917Z-42d3213e/comparison.png)
+Comparaci?n calculada: `runtime/experiments/resnet18/20261118T195917Z-42d3213e/comparison.png`
 
 ## Pruebas realizadas
 

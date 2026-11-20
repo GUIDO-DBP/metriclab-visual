@@ -33,12 +33,12 @@ La entrega no afirma autorización para cualquier uso comercial de pesos/datos n
 | Playwright | Apache 2.0; se usa para pruebas y generación de PDF. |
 | PyMuPDF | Herramienta opcional de revisión PDF; AGPL/comercial según su distribución. No es dependencia de ejecución de la web. |
 
-Los entornos y ruedas no se redistribuyen. Pip/npm instalan las bibliotecas con sus avisos. `requirements-lock.txt` fija la instalación backend comprobada; `package-lock.json` registra paquetes frontend. Los generadores de documentación no cambian la licencia de las capturas propias ni atribuyen a este proyecto el código de terceros.
+Los entornos y ruedas no se redistribuyen. Pip/npm instalan las bibliotecas con sus avisos. `requirements/runtime.lock.txt` fija la instalación backend comprobada; `package-lock.json` registra paquetes frontend. Los generadores de documentación no cambian la licencia de las capturas propias ni atribuyen a este proyecto el código de terceros.
 
 ## Código propio, modelos y evidencias
 
 No se ha asignado una licencia abierta nueva al código propio ni se han inventado titulares. La publicación y la entrega académica fueron autorizadas por el responsable del proyecto. Cualquier concesión adicional para redistribución o uso comercial debe decidirla el titular; una publicación en GitHub por sí sola no equivale a una licencia MIT.
 
-Los clasificadores y embeddings fueron generados por los experimentos documentados; no son copias del checkpoint CNN. Se distribuyen para ejecutar y auditar esta entrega académica, conservando hashes, parámetros, atribución al dataset y procedencia del extractor. No se afirma una revisión jurídica exhaustiva de derivados o usos posteriores. La documentación mantiene los autores como campos pendientes cuando sus nombres no están verificados.
+Los clasificadores y embeddings fueron generados por los experimentos documentados; no son copias del checkpoint CNN. Se distribuyen para ejecutar y auditar esta entrega académica, conservando hashes, parámetros, atribución al dataset y procedencia del extractor. No se afirma una revisión jurídica exhaustiva de derivados o usos posteriores. Los integrantes verificados para esta entrega figuran en el README; los documentos preliminares archivados pueden conservar campos pendientes.
 
 No se publica el corpus ImageNet. Los ZIP no contienen fotos del dataset, checkpoints, credenciales, datos personales de usuarios ni entornos. Los artefactos históricos se conservan sin cambiar resultados para esta distribución.

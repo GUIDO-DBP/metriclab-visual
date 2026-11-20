@@ -1,2 +1,0 @@
-# Solo PostgreSQL es opcional. Los cuatro clasificadores están en requirements.txt.
-psycopg[binary]>=3.2,<4

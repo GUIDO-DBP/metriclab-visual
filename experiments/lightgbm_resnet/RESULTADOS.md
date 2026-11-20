@@ -1,5 +1,7 @@
 # LightGBM + ResNet-18: diagnóstico, mejora e integración
 
+> Los artefactos `runtime/` indicados abajo son rutas locales, no archivos del árbol GitHub. Se obtienen con el paquete `research` de la [Release resources-v1](https://github.com/GUIDO-DBP/metriclab-visual/releases/tag/resources-v1); véase la [instalación](../../docs/INSTALACION_WINDOWS.md). Las cifras y protocolos originales se conservan.
+
 Ejecución real `20261118T211652Z-600d0ec2`, sobre los embeddings originales, sin reentrenar la CNN. Se conservaron los experimentos ResNet `20261118T195917Z-42d3213e` y comparación `20261118T204643Z-8efb68c2`, así como todos los modelos HSV.
 
 ## Integridad y diagnóstico
@@ -16,7 +18,7 @@ Se capturaron **6.718** mensajes `No further splits with positive gain` en el di
 
 La evidencia es compatible con inestabilidad de los valores de hoja en este problema multiclase. La documentación oficial describe `min_child_weight` como el mínimo Hessiano por hoja y `reg_lambda` como regularización L2 ([LGBMClassifier](https://lightgbm.readthedocs.io/en/stable/pythonapi/lightgbm.LGBMClassifier.html)). Las modificaciones fueron conjuntas: **no se ha demostrado por ablación qué parámetro individual causó o resolvió el problema**.
 
-![Curvas reales de entrenamiento y validación](../../runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/training_curves.png)
+Curvas reales de entrenamiento y validación: `runtime/experiments/lightgbm_resnet/20261118T211652Z-600d0ec2/training_curves.png`
 
 ## Selección exclusivamente con entrenamiento
 

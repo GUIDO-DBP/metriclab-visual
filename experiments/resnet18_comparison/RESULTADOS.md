@@ -1,5 +1,7 @@
 # Resultados verificados de la ampliacion ResNet-18
 
+> Los artefactos `runtime/` indicados abajo son rutas locales, no archivos del árbol GitHub. Se obtienen con el paquete `research` de la [Release resources-v1](https://github.com/GUIDO-DBP/metriclab-visual/releases/tag/resources-v1); véase la [instalación](../../docs/INSTALACION_WINDOWS.md). Las cifras y protocolos originales se conservan.
+
 [Plan de integracion](PLAN_INTEGRACION.md) | [Guia de ejecucion](README.md)
 
 # ResNet-18: comparación de cuatro algoritmos y estabilidad interna
@@ -57,12 +59,12 @@ Referencias: [StratifiedKFold](https://scikit-learn.org/stable/modules/generated
 - Build del frontend aprobado; pagina e imagen real de entrenamiento responden HTTP 200.
 - 66 archivos de aplicacion y 38 artefactos padre conservan sus hashes.
 
-- [Resultados JSON](../../runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/results.json)
-- [Comparacion CV](../../runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/training_cv_comparison.csv)
-- [Prueba historica reutilizada](../../runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/historical_test_comparison.csv)
-- [Seleccion congelada desde CV](../../runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/cv_selection.json)
-- [Verificacion del sistema existente](../../runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/system_verification.json)
-- [Catalogo propuesto, no activo](../../runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/model_catalog_proposal.json)
-- [Ejemplos de fotos reales por categoria](../../runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/gallery_examples_proposal.json)
+- Resultados JSON: `runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/results.json`
+- Comparacion CV: `runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/training_cv_comparison.csv`
+- Prueba historica reutilizada: `runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/historical_test_comparison.csv`
+- Seleccion congelada desde CV: `runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/cv_selection.json`
+- Verificacion del sistema existente: `runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/system_verification.json`
+- Catalogo propuesto, no activo: `runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/model_catalog_proposal.json`
+- Ejemplos de fotos reales por categoria: `runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/gallery_examples_proposal.json`
 
-![Estabilidad de validacion interna](../../runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/cv_stability.png)
+Estabilidad de validacion interna: `runtime/experiments/resnet18_comparison/20261118T204643Z-8efb68c2/cv_stability.png`

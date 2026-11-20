@@ -1,5 +1,7 @@
 # Verificación de la entrega
 
+> Evidencia histórica de la integración del laboratorio métrico, anterior al módulo de clasificación actual. Las comprobaciones vigentes se resumen en la [auditoría de limpieza](AUDITORIA_LIMPIEZA_FINAL.md).
+
 Ejecutada en Windows el 16 de noviembre de 2026. Dataset local Caltech-101 completo, excluyendo fondo. Semilla de separación 7. Descriptor original de 144 dimensiones.
 
 ## Motor original

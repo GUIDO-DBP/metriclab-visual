@@ -1,4 +1,4 @@
 # Optional authoring/validation tools; not required to run the application.
 Markdown==3.11.3
 PyMuPDF==2.1
-# Figures use matplotlib from requirements-lock.txt; PDFs use frontend Playwright + Edge.
+# Figures use matplotlib from requirements/runtime.lock.txt; PDFs use frontend Playwright + Edge.

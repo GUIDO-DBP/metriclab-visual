@@ -74,7 +74,8 @@ def protected_files():
     paths = []
     for folder in ['backend', 'metriclab', 'scripts', 'frontend/src', 'frontend/dist']:
         paths.extend(p for p in (ROOT / folder).rglob('*') if p.is_file() and '__pycache__' not in p.parts)
-    for name in ['README.md', 'requirements.txt', 'requirements-tested.txt', 'requirements-optional.txt',
+    for name in ['README.md', 'requirements.txt', 'requirements/runtime.lock.txt', 'requirements/tested-direct.txt', 'requirements/optional-postgres.txt',
+                 'requirements/resnet.txt', 'requirements/documentation.txt',
                  'frontend/index.html', 'frontend/package.json', 'frontend/package-lock.json',
                  'runtime/data/manifest.json', 'runtime/data/train.bin', 'runtime/data/query.bin',
                  'runtime/data/models.joblib', 'runtime/data/experiments.json', 'runtime/data/active_classifiers.json']:

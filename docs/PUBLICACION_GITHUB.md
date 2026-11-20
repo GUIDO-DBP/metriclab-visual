@@ -40,7 +40,7 @@ cd metriclab-visual
 
 ## Documentación y límites
 
-Diez manuales Markdown/PDF: 54 páginas. Informe académico editable y PDF: 21 páginas, con portada de campos pendientes, referencias y presentación APA 7. Véase `documentacion_entrega/README.md`. Los autores, docente e institución deben completarse antes de presentar.
+En esa publicación se incluyeron diez manuales Markdown/PDF (54 páginas) y un informe preliminar (21 páginas). Desde la limpieza del 20 de noviembre se consultan en la [rama de archivo](https://github.com/GUIDO-DBP/metriclab-visual/tree/archive/materiales-estudio-2026-11-20/documentacion_entrega). Los integrantes e institución verificados figuran ahora en el README; el informe definitivo se incorporará posteriormente.
 
 La prueba funcional independiente se hizo en un segundo directorio del mismo equipo, con entornos nuevos sin paquetes globales y torch CPU: 25 tests backend, 7 Edge y 10.503 comprobaciones C++ correctas. Esto no demuestra funcionamiento en otra computadora física o GPU. Véase `PRUEBA_INSTALACION_LIMPIA.md`.
 
