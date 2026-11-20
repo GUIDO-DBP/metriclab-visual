@@ -1,0 +1,2 @@
+# Opcional: importación PostgreSQL; no es necesaria para clasificar.
+psycopg[binary]>=3.2,<4

@@ -2,7 +2,7 @@
 
 ## Entorno y protocolo
 
-Windows x64, Python 3.14.4, Node.js 24.15.0, g++ MSYS2 UCRT64 16.2.0, scikit-learn 1.9.1, XGBoost 3.4.1 y LightGBM 4.7.0. Otras versiones directas en `requirements-tested.txt`; npm fija dependencias en `package-lock.json`.
+Windows x64, Python 3.14.4, Node.js 24.15.0, g++ MSYS2 UCRT64 16.2.0, scikit-learn 1.9.1, XGBoost 3.4.1 y LightGBM 4.7.0. Otras versiones directas en `requirements/tested-direct.txt`; npm fija dependencias en `package-lock.json`.
 
 Caltech-101: 6.941 imágenes de entrenamiento y 1.736 de prueba, 101 categorías, descriptor original de 144 dimensiones. División anterior intacta, semilla 7. Modelos con semilla 0. Sin ajuste de hiperparámetros ni selección de características usando prueba.
 

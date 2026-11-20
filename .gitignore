@@ -8,7 +8,7 @@ __pycache__/
 *.tsbuildinfo
 .env
 !*.example
-# Distribution/build artifacts stay local; curated manuals and figures are tracked.
+# Distribution/build artifacts stay local; selected screenshots are tracked in docs/assets.
 .pytest_cache/
 .ruff_cache/
 *.log
@@ -20,3 +20,22 @@ documentacion_entrega/.build/
 documentacion_entrega/qa/
 frontend/test-results/
 frontend/playwright-report/
+
+# Materiales preservados localmente y en archive/materiales-estudio-2026-11-20.
+/documentacion_entrega/
+/MetricLab_reporte_demo.html
+/Plan_Proyecto_MetricLab_Visual_APA7.docx
+/docs/AUDITORIA.md
+/docs/VERIFICACION_PDF.md
+/scripts/assemble_report.py
+/scripts/audit_distribution.py
+/scripts/build_documentation.py
+/scripts/build_pdfs.mjs
+/scripts/capture_manual.mjs
+/scripts/check_pdfs.py
+/scripts/documentation_assets.py
+/requirements-lock.txt
+/requirements-resnet-runtime.txt
+/requirements-optional.txt
+/requirements-docs.txt
+/requirements-tested.txt

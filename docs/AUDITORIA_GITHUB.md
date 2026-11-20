@@ -1,5 +1,7 @@
 # Auditoría de preparación GitHub
 
+> Evidencia histórica anterior a la limpieza. Estos tamaños describen aquel árbol; consultar la [auditoría actual](AUDITORIA_LIMPIEZA_FINAL.md) y el [archivo de estudio](ARCHIVO_HISTORICO.md).
+
 Fecha: 19 de noviembre de 2026. Repositorio de destino: `GUIDO-DBP/metriclab-visual`; rama local `feature/clasificacion-u2`. Se conserva el commit anterior `621253d` y el historial, sin force push. Se hizo una copia ZIP del código antes de modificarlo, en `runtime/github_preparation_backup/`, fuera de la publicación.
 
 ## Contenido seleccionado para Git

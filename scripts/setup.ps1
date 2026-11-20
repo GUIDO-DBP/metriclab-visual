@@ -15,13 +15,13 @@ try {
     Invoke-Checked $node.Source @('-e','const [a,b]=process.versions.node.split(''.'').map(Number); if(a<22||(a===22&&b<12))process.exit(1)')
     if (-not (Test-Path '.venv/Scripts/python.exe')) { Invoke-Checked $pythonCommand.Source @('-m','venv','.venv') }
     $python=Join-Path $projectRoot '.venv/Scripts/python.exe'
-    $requirementsHash=(Get-FileHash 'requirements-lock.txt' -Algorithm SHA256).Hash
+    $requirementsHash=(Get-FileHash 'requirements/runtime.lock.txt' -Algorithm SHA256).Hash
     $statePath=Join-Path $projectRoot 'runtime/setup-state.json'
     $setupState=$null
     if (Test-Path -LiteralPath $statePath) { $setupState=Get-Content -LiteralPath $statePath -Raw | ConvertFrom-Json }
     if ($Refresh -or -not $setupState -or $setupState.requirements -ne $requirementsHash) {
         Write-Host 'Instalando versiones compatibles con los modelos guardados...'
-        Invoke-Checked $python @('-m','pip','install','-r','requirements-lock.txt')
+        Invoke-Checked $python @('-m','pip','install','-r','requirements/runtime.lock.txt')
     }
     Invoke-Checked $python @('-m','pip','check')
     if (-not $SkipResNet) {
@@ -35,7 +35,7 @@ try {
             if ($Refresh) { $torchArguments+='--force-reinstall' }
             Invoke-Checked $resnetPython $torchArguments
         }
-        Invoke-Checked $resnetPython @('-m','pip','install','-r','requirements-resnet-runtime.txt')
+        Invoke-Checked $resnetPython @('-m','pip','install','-r','requirements/resnet.txt')
         Invoke-Checked $resnetPython @('-c','import torch,torchvision,numpy,PIL; assert torch.__version__.split(''+'')[0]==''2.14.1'' and torchvision.__version__.split(''+'')[0]==''0.29.1''; print(''ResNet disponible; CUDA:'',torch.cuda.is_available())')
     }
     Push-Location frontend
@@ -47,5 +47,5 @@ try {
     New-Item -ItemType Directory -Force runtime | Out-Null
     @{requirements=$requirementsHash;frontend=$lockHash;torchBackend=$TorchBackend} | ConvertTo-Json | Set-Content -LiteralPath $statePath -Encoding UTF8
     Write-Host 'Dependencias listas. Ahora instala los paquetes de modelos, descarga el dataset y verifica la instalación.'
-    Write-Host 'No se entrenó ningún modelo. Consulta documentacion_entrega/09_INSTALACION_EJECUCION.md.'
+    Write-Host 'No se entrenó ningún modelo. Consulta docs/INSTALACION_WINDOWS.md.'
 } finally { Pop-Location }
